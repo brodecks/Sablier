@@ -22,7 +22,7 @@ canvas.pack()
 # Cadre de l'objet sablier
 line = canvas.create_line(150, 50, 150, 350, fill="gold")
 
-# Sable du haut (triangle inversé) — initialisé avec initial_hauteur
+# Sable du haut (triangle inversé) — initialisé avec initialHauteur
 initialHauteur = 100
 
 sableHaut = canvas.create_polygon(100, 50, 200, 50, 150, 50 + initialHauteur, fill="gold")
