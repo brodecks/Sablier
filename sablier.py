@@ -1,4 +1,5 @@
 import tkinter as tk
+from plyer import notification
 
 def creation():
     global line, sableHaut, sableBas, initialHauteur
@@ -13,10 +14,15 @@ def animer(hauteur):
         canvas.coords(sableHaut, 100, 50, 200, 50, 150, 50 + hauteur)
         basApex = 350 - (initialHauteur - hauteur)
         canvas.coords(sableBas, 100, 350, 200, 350, 150, basApex)
-        fenetre.after(20, lambda: animer(hauteur - 1))
+        fenetre.after(10, lambda: animer(hauteur - 1))
     else:
         canvas.coords(sableHaut, 0, 0, 0, 0, 0, 0)
         canvas.coords(line, 0, 0, 0, 0)
+        notification.notify(
+            title="reminder",
+            message="Pause!",
+            app_name="Python Notifier",
+        )
 
 
 def reset():
