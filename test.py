@@ -1,31 +1,18 @@
 import tkinter as tk
 
-def creation():
-    global line, sableHaut, sableBas, initialHauteur
-    initialHauteur = 100
-    line = canvas.create_line(150, 50, 150, 350, fill="gold")
-    sableHaut = canvas.create_polygon(100, 50, 200, 50, 150, 50 + initialHauteur, fill="gold")
-    sableBas = canvas.create_polygon(100, 350, 200, 350, 150, 350, fill="gold")
-    animer(initialHauteur)
+compteur = 0
 
-def animer(hauteur):
-    if hauteur > 0:
-        canvas.coords(sableHaut, 100, 50, 200, 50, 150, 50 + hauteur)
-        basApex = 350 - (initialHauteur - hauteur)
-        canvas.coords(sableBas, 100, 350, 200, 350, 150, basApex)
-        fenetre.after(60, lambda: animer(hauteur - 1))
-    else:
-        canvas.coords(sableHaut, 0, 0, 0, 0, 0, 0)
-        canvas.coords(line, 0, 0, 0, 0)
+def update():
+    global compteur
+    compteur += 1
+    label.config(text=f"Temps : {compteur} s")
+    fenetre.after(1000, update)
 
 fenetre = tk.Tk()
-canvas = tk.Canvas(fenetre, width=300, height=400, bg="white")
-canvas.pack()
 
-button1 = tk.Button(fenetre, text="Jouer", command=creation)
-button1.pack()
+label = tk.Label(fenetre, text="Temps : 0 s", font=("Arial", 20))
+label.pack()
 
-button = tk.Button(fenetre, text="Rejouer", command=creation)
-button.pack()
+update()
 
 fenetre.mainloop()
