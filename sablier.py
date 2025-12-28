@@ -1,5 +1,6 @@
 import tkinter as tk
 from plyer import notification
+from chrono import conversion
 
 def creation():
     global line, sableHaut, sableBas, initialHauteur
