@@ -1,6 +1,6 @@
 import tkinter as tk
 from plyer import notification
-from chrono import conversion
+from chrono import compteur
 
 def creation():
     global line, sableHaut, sableBas, initialHauteur
