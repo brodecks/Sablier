@@ -1,8 +1,10 @@
 import time
 
-minutes = 3
+minutes = 2
 for x in range(minutes):
     secondes = 60
-    if secondes >= 0: 
-        time.sleep(1)
-        print(f"{secondes - 1}")
+    for x in range(secondes):
+        if secondes >= 0: 
+            time.sleep(0.1)
+            print(f"{secondes - 1}")
+            secondes -= 1

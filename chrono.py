@@ -1,10 +1,18 @@
 import time
 
-def compteur(minutes):
-    for x in range(minutes):
-        secondes = 60
-        if secondes >= 0:
-            time.sleep(1)
-            print(f"{secondes - 1}")
+def AffichageSS(minutes):
+    secondes = 60
+    for x in range(secondes):
+        if secondes >= 0: 
+            time.sleep(0.1)
+            secondes -= 1
 
-compteur(5)
+
+def AffichageMM(minutes):
+    for x in range(minutes):
+        if minutes >=0:
+            AffichageSS(minutes)
+            minutes -= 1
+
+
+AffichageMM(2)
