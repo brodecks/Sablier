@@ -1,7 +1,7 @@
 import tkinter as tk
 from plyer import notification
-import time
 
+global minutes
 def creation():
     global line, sableHaut, sableBas, initialHauteur
     initialHauteur = 100
@@ -34,24 +34,24 @@ def transformerTexteEnMS():
     return int(temps2/100)
 
 
-def AffichageMM(minutes):
-    if minutes >= 0:
-        for x in range(minutes):
-            secondes = 60
-            if secondes >= 0:
-                for x in range(secondes):
-                    lblTimer.configure(text=f"{minutes} : {secondes}")
-                    time.sleep(0.1)
-                    secondes -= 1
-            minutes -= 1
+def AffichageSS(secondes):
+    minutes = int(txtTimer.get())
+    if secondes == 0 and minutes == 0:
+        lblTimer.configure(text=f"Fin du timer.")
+    elif secondes == 0:
+        minutes -= 1
+        secondes = 59
+        fenetre.after(1000, lambda: AffichageSS(secondes))
     else:
-        lblTimer.configure(text="Fin du timer.")
+        lblTimer.configure(text=f"{minutes} : {secondes}")
+        secondes -= 1
+        fenetre.after(1000, lambda: AffichageSS(secondes))
 
 
 def reset():
     canvas.coords(sableBas, 100, 350, 200, 350, 150, 350)
-    lblTimer.pack_forget()
     txtTimer.pack_forget()
+    AffichageSS(0)
     creation()
 
 
@@ -65,7 +65,7 @@ lblTimer.pack()
 txtTimer = tk.Entry(fenetre)
 txtTimer.pack()
 
-button1 = tk.Button(fenetre, text="Lancer", command=lambda: (creation(), AffichageMM(int(txtTimer.get())), button1.pack_forget(), txtTimer.pack_forget()))
+button1 = tk.Button(fenetre, text="Lancer", command=lambda: (creation(), AffichageSS(0), button1.pack_forget(), txtTimer.pack_forget()))
 button1.pack()
 
 button2 = tk.Button(fenetre, text="Rejouer", command=lambda: (reset(), button2.pack_forget()))
